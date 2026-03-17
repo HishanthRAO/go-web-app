@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-web-app
+  labels:
+    app: go-web-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: go-web-app
+  template:
+    metadata:
+      labels:
+        app: go-web-app
+    spec:
+      containers:
+      - name: go-web-app
+        image: hishanth/go-web-app:v1
+        ports:
+        - containerPort: 8080
+```
+
+Save with **Ctrl+S** → **All Files** → `deployment.yaml`
+
+**File 2 — Service:**
+```
+notepad k8s\manifests\service.yaml
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: go-web-app
+spec:
+  selector:
+    app: go-web-app
+  ports:
+  - port: 80
+    targetPort: 8080
+  type: NodePort
+```
+
+Save the same way.
+
+Then run:
+```
+tree /F
