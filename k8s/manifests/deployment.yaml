@@ -16,32 +16,6 @@ spec:
     spec:
       containers:
       - name: go-web-app
-        image: hishanth/go-web-app:v1
+        image: hishanth/go-web-app:latest
         ports:
         - containerPort: 8080
-```
-
-Save with **Ctrl+S** → **All Files** → `deployment.yaml`
-
-**File 2 — Service:**
-```
-notepad k8s\manifests\service.yaml
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: go-web-app
-spec:
-  selector:
-    app: go-web-app
-  ports:
-  - port: 80
-    targetPort: 8080
-  type: NodePort
-```
-
-Save the same way.
-
-Then run:
-```
-tree /F
